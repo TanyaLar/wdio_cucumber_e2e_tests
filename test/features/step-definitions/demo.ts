@@ -24,3 +24,31 @@ Then(/^URL should match (.*)$/, async function(expectedURL){
   chai.expect(url).to.equal(expectedURL)
   await browser.pause(5000);
 }) 
+/**
+ * Web Interections
+ */
+
+Given(/^A web page is opened$/, async function(){
+  await browser.url("/inputs")
+  await browser.setTimeout({implicit: 15000, pageLoad: 10000})
+  // await browser.maximizeWindow()
+})
+
+When(/^Perform with interections$/, async function(){
+  /**
+   * Input Box
+   * Actions:
+   * 1.Type intoinput box
+   * 2.Clear the field and type or just addvalue
+   * 3.Click and type
+   * 4.Slow typing
+   */
+
+  let num = 12345
+  let strNum = num.toString()
+  let ele = await $('[type=number')
+  await ele.click()
+  await ele.setValue(strNum)
+
+  await browser.debug()
+})

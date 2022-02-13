@@ -1,6 +1,6 @@
 Feature: Web Interections
 
-    @demo
+    # @demo
     Scenario Outline: Demo web Interections
         Given A web page is opened
         When Perform with interections

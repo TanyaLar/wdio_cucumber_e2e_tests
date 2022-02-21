@@ -1,36 +1,69 @@
 import { Given } from "@cucumber/cucumber";
 import chai from "chai";
+import reporter from "../../helper/reporter";
+import sauseHomePage from "../../page-objects/sause.home.page";
+import constants from "../../../data/fileupload/sample/constants.json"
+import apiHelper from  "../../helper/api.helper"
+import fs from "fs"
 
-Given(/^Login to inventory web app$/, async function (){
-    /**1. Launch browser */
-    await browser.url("http://saucedemo.com/")
-    // await browser.setTimeout({implicit: 15000, pageLoad: 10000})
-    // await browser.maximizeWindow()
-
-    /**2. Login  */
+Given(
+  /^As (a|an) (.*) user I login to inventory web app$/,
+  async function (prefixTxt, userType, dataTable) {
     try {
-        await $(`#user-name`).setValue("standard_user")
-        await $(`#password`).setValue("secret_sauce")
-        await $(`#login-button`).click()
+      reporter.addStep(this.testid, "info", "Login to sauce demo");
+      let dt = dataTable.hashes();
+      //@ts-ignore
+      await sauseHomePage.navigateTo(browser.config.sauceDemoUrl);
+      await sauseHomePage.loginToSauseApp(
+        this.testid,
+        process.env.TEST_STD_USERNAME,
+        process.env.TEST_STD_PASSWORD
+      );
     } catch (err) {
-        console.log(`Error in first ligin. Retry...`)
-        await browser.refresh()
-        await browser.pause(2000)
-        await $(`#user-name`).setValue("standard_user")
-        await $(`#password`).setValue("secret_sauce")
-        await $(`#login-button`).click()
+        err.message = `${this.testid} Failed at login step, ${err.message}`
+        throw err
     }
+  }
+);
 
-    /**3. Login other user*/
-    // await browser.pause(2000)
-    // await browser.reloadSession()
-    // await browser.url("http://saucedemo.com/")
-    // await $(`#user-name`).setValue("problem_user")
-    // await $(`#password`).setValue("secret_sauce")
-    // await $(`#login-button`).click()
+/**
+ * Get list of users from reqres api
+ * Sub-steps:
+ * 1. Get payload data
+ * 2. Make get call by using API helper
+ * 3. Store results
+ */
+Given(/^Get list of (.*) from reqres.in$/, async function (endpointRef){
+  if (!endpointRef) throw Error(`Given endpoint ref: ${endpointRef} is not valid`)
 
-    // await browser.back()
-    // await browser.pause(5000)
-    // await browser.forward()
-    await browser.debug()
+  try {
+    // * 1. Get payload data
+    reporter.addStep(this.testid, "info", `Getting the payload data for endpoint: ${endpointRef}`)
+    let endpoint = ""
+    if(endpointRef.trim().toUpperCase() === "USERS"){
+      endpoint = constants.REQRES.GET_USERS
+    }
+    if (!endpoint) throw Error(`Error getting endpoint:${endpoint} from the constants.json`)
+  
+    // * 2. Make get call by using API helper
+    let testid = this.testid
+    let res
+    await browser.call(async function(){
+      //@ts-ignore
+      res = await apiHelper.GET(testid, browser.config.reqresBaseURL, endpoint, "", constants.REQRES.QUERY_PARAM)
+    })
+    //@ts-ignore
+    if(res.status !== 200) chai.expect.fail(`Failed getting users from: ${browser.config.reqresBaseURL}/${endpoint}`)
+    reporter.addStep(this.testid, "debug", `API response recieved, data: ${JSON.stringify(res.body)}`)
+  
+    // * 3. Store results
+    let data = JSON.stringify(res.body, undefined, 4)
+    let filename = `${process.cwd()}/data/api-res/reqresAPIUsers.json`
+    fs.writeFileSync(filename, data)
+    reporter.addStep(this.testid, "info", `API response from ${endpoint} stored in json file`)
+  } catch (err) {
+    err.message = `${this.testid}; Failed at getting API users from reqres, ${err.message}`
+    throw err
+  }
+  
 })

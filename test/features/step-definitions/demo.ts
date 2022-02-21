@@ -7,7 +7,7 @@ Given(/^Google page is opened$/, async function () {
 });
 
 When(/^Search with (.*)$/, async function(searchItem){
-  console.log(`>> searchItem: ${searchItem}`)
+  // console.log(`>> searchItem: ${searchItem}`)
   let ele = await $(`[name = q]`)
   await ele.setValue(searchItem)
   await browser.keys("Enter")
@@ -21,7 +21,7 @@ Then(/^Ckick on the first search result$/, async function(){
 })
 
 Then(/^URL should match (.*)$/, async function(expectedURL){
-  console.log(`>>expectedURL: ${expectedURL}`)
+  // console.log(`>>expectedURL: ${expectedURL}`)
   await browser.waitUntil(async () => {
     return await browser.getTitle() === "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO"
   }, {timeout: 10000, interval: 500, timeoutMsg: `Failed loading WDIO web page: ${await browser.getTitle()}`})

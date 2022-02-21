@@ -1,0 +1,44 @@
+
+Execution of 7 workers started at 2022-02-20T20:01:17.091Z
+
+2022-02-20T20:01:17.256Z INFO @wdio/cli:launcher: Run onPrepare hook
+2022-02-20T20:01:17.261Z INFO chromedriver: Start Chromedriver (/Users/tanya/WIOProjects/WDIO_Cucumber_E2E_tests/node_modules/chromedriver/lib/chromedriver/chromedriver) with args --port=9515 --url-base=/
+2022-02-20T20:01:17.352Z INFO chromedriver: Starting ChromeDriver 97.0.4692.71 (adefa7837d02a07a604c1e6eff0b3a09422ab88d-refs/branch-heads/4692@{#1247}) on port 9515
+2022-02-20T20:01:17.352Z INFO chromedriver: Only local connections are allowed.
+2022-02-20T20:01:17.352Z INFO chromedriver: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+2022-02-20T20:01:17.405Z INFO chromedriver: ChromeDriver was started successfully.
+2022-02-20T20:01:17.511Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:17.511Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:17.512Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:17.512Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:17.512Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:17.514Z INFO @wdio/local-runner: Start worker 0-0 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+2022-02-20T20:01:17.522Z INFO @wdio/local-runner: Start worker 0-1 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+2022-02-20T20:01:17.641Z INFO @wdio/local-runner: Start worker 0-2 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+2022-02-20T20:01:17.670Z INFO @wdio/local-runner: Start worker 0-3 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+2022-02-20T20:01:17.737Z INFO @wdio/local-runner: Start worker 0-4 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+[0-0] [90m2022-02-20T20:01:18.381Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-1] [90m2022-02-20T20:01:18.937Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-3] [90m2022-02-20T20:01:19.114Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-4] [90m2022-02-20T20:01:19.141Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-2] [90m2022-02-20T20:01:19.279Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-0] FAILED
+2022-02-20T20:01:21.190Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:21.191Z INFO @wdio/local-runner: Start worker 0-5 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+[0-1] FAILED
+2022-02-20T20:01:21.625Z INFO @wdio/cli:launcher: Run onWorkerStart hook
+2022-02-20T20:01:21.626Z INFO @wdio/local-runner: Start worker 0-6 with arg: config/wdio.test.conf.ts,--cucumberOpts.tagExpression=@demo
+[0-4] FAILED
+[0-3] FAILED
+[0-2] FAILED
+[0-5] [90m2022-02-20T20:01:22.477Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-6] [90m2022-02-20T20:01:22.613Z[39m [96mINFO[39m [97m@wdio/local-runner[39m: Run worker command: run
+[0-5] FAILED
+[0-6] FAILED
+2022-02-20T20:01:23.459Z INFO @wdio/cli:launcher: Run onComplete hook
+
+Spec Files:	 0 passed, 7 failed, 7 total (100% completed) in 00:00:06 
+
+2022-02-20T20:01:23.461Z INFO @wdio/local-runner: Shutting down spawned worker
+2022-02-20T20:01:23.717Z INFO @wdio/local-runner: Waiting for 0 to shut down gracefully
+2022-02-20T20:01:23.718Z INFO @wdio/local-runner: shutting down

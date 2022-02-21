@@ -119,12 +119,12 @@ export const config: WebdriverIO.Config = {
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
     },
-    {
-      maxInstances: 3,
-      browserName: "firefox",
-      acceptInsecureCerts: true,
-      timeouts: { implicit: 5000, pageLoad: 20000, script: 30000 },
-    }
+    // {
+    //   maxInstances: 3,
+    //   browserName: "firefox",
+    //   acceptInsecureCerts: true,
+    //   timeouts: { implicit: 5000, pageLoad: 20000, script: 30000 },
+    // }
   ],
   //
   // ===================
